@@ -1,0 +1,5 @@
+* Make sure all extensions are created
+* Allow user to specify custom DB name using ENV
+* Allow user to specify custom DB username using ENV
+* Initialize PostGIS
+* Add custom tweaks to PostgreSQL configuration for OSM
