@@ -8,8 +8,7 @@ if [ "$1" = 'postgres' ]; then
     gosu postgres initdb
     
     ./update-access.sh
-    sed -ri "s/^#(listen_addresses\s*=\s*)\S+/\1'*'/" "$PGDATA"/postgresql.conf
-    
+    ./update-settings.sh
   fi
   
   exec gosu postgres "$@"
