@@ -24,12 +24,23 @@ Then test with `postgresql-client`:
 
 This will use Docker's container links to connect to Postgresql without having Postgresql exposed to the host or network.
 
+## Customization
+
+By default, the database created will be called `gis` and be owned by user `osm`. These can be changed with environment variables in the RUN command:
+
+    # docker run -d --name postgres-osm -e "OSM_USER=www-data" -e "OSM_DB=osm_dataset" openfirmware/postgres-osm
+
+These variables can be accessed from linked containers. Consider the link alias `pg`:
+
+    PG_ENV_OSM_USER=osm
+    PG_ENV_OSM_DB=gis
+
+These can then be passed into import scripts or clients in other containers.
+
 ## Todo
 
 This Dockerfile is UNFINISHED. There are still some remaining tasks before it is usable for an OpenStreetMap database.
 
-* Allow user to specify custom DB name using ENV
-* Allow user to specify custom DB username using ENV
 * Add custom tweaks to PostgreSQL configuration for OSM
 
 ## About

@@ -9,6 +9,9 @@ ENV PG_MAJOR 9.3
 
 RUN apt-get update && apt-get install -y -q postgresql-${PG_MAJOR}-postgis-2.1 postgresql-contrib postgresql-server-dev-${PG_MAJOR}
 
+ENV OSM_USER osm
+ENV OSM_DB gis
+
 COPY ./postgres-entry.sh /
 ENTRYPOINT ["/postgres-entry.sh"]
 
