@@ -28,10 +28,8 @@ This will use Docker's container links to connect to Postgresql without having P
 
 This Dockerfile is UNFINISHED. There are still some remaining tasks before it is usable for an OpenStreetMap database.
 
-* Make sure all required extensions are created
 * Allow user to specify custom DB name using ENV
 * Allow user to specify custom DB username using ENV
-* Initialize PostGIS
 * Add custom tweaks to PostgreSQL configuration for OSM
 
 ## About
