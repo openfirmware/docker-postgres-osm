@@ -10,7 +10,29 @@ Can be built from the Dockerfile:
 
 ## Running Postgres
 
-(TODO)
+Build the image:
+
+    # docker build -t openfirmware/postgres-osm .
+
+Then launch the container:
+
+    # docker run -d --name postgres-osm openfirmware/postgres-osm
+
+Then test with `postgresql-client`:
+
+    # docker run -i -t --rm --link postgres-osm:pg --entrypoint /bin/bash postgres:9.3.5 -c 'psql -h $PG_PORT_5432_TCP_ADDR -p $PG_PORT_5432_TCP_PORT -U postgres postgres'
+
+This will use Docker's container links to connect to Postgresql without having Postgresql exposed to the host or network.
+
+## Todo
+
+This Dockerfile is UNFINISHED. There are still some remaining tasks before it is usable for an OpenStreetMap database.
+
+* Make sure all required extensions are created
+* Allow user to specify custom DB name using ENV
+* Allow user to specify custom DB username using ENV
+* Initialize PostGIS
+* Add custom tweaks to PostgreSQL configuration for OSM
 
 ## Related Docker Images
 
