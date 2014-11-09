@@ -34,6 +34,10 @@ This Dockerfile is UNFINISHED. There are still some remaining tasks before it is
 * Initialize PostGIS
 * Add custom tweaks to PostgreSQL configuration for OSM
 
+## About
+
+This Dockerfile was built with information from the [Ubuntu 14.04 Switch2OSM guide](http://switch2osm.org/serving-tiles/manually-building-a-tile-server-14-04/).
+
 ## Related Docker Images
 
 * [Postgres Image](https://registry.hub.docker.com/_/postgres/)
