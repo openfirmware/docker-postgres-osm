@@ -20,6 +20,7 @@ if [ "$1" = 'postgres' ]; then
   gosu postgres createdb -E UTF8 -O "$OSM_USER" "$OSM_DB"
   gosu postgres psql "$OSM_DB" <<EOF
   CREATE EXTENSION postgis;
+  CREATE EXTENSION hstore;
   ALTER TABLE geometry_columns OWNER TO "${OSM_USER}";
   ALTER TABLE spatial_ref_sys OWNER TO "${OSM_USER}";
 EOF
