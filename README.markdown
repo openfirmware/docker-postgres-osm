@@ -42,6 +42,7 @@ These can then be passed into import scripts or clients in other containers.
 This Dockerfile is UNFINISHED. There are still some remaining tasks before it is usable for an OpenStreetMap database.
 
 * Add custom tweaks to PostgreSQL configuration for OSM
+* Handle log output (probably will dump to STDOUT)
 
 ## About
 
