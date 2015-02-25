@@ -1,5 +1,5 @@
-# DOCKER-VERSION 1.2.0
-# VERSION 0.1
+# DOCKER-VERSION 1.5.0
+# VERSION 0.2
 
 FROM postgres:9.3.5
 MAINTAINER James Badger <james@jamesbadger.ca>
@@ -12,8 +12,6 @@ RUN apt-get update && apt-get install -y -q postgresql-${PG_MAJOR}-postgis-2.1 p
 ENV OSM_USER osm
 ENV OSM_DB gis
 
-COPY ./postgres-entry.sh /
-ENTRYPOINT ["/postgres-entry.sh"]
-
-EXPOSE 5432
-CMD ["postgres"]
+RUN mkdir -p /docker-entrypoint-initdb.d
+ADD ./postgres-entry.sh /docker-entrypoint-initdb.d/postgres-entry.sh
+RUN chmod +x /docker-entrypoint-initdb.d/*.sh
