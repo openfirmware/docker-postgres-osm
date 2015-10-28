@@ -37,6 +37,11 @@ These variables can be accessed from linked containers. Consider the link alias 
 
 These can then be passed into import scripts or clients in other containers.
 
+Additionally, you can provide a custom tablespace using the following env variables: ``$DB_STORAGE_NAME`` and ``$DB_STORAGE_MOUNTPOINT``.  
+Example:
+    
+    # docker run -d --name postgres-osm -e "OSM_USER=www-data" -e "OSM_DB=osm_dataset" -e "DB_STORAGE_NAME=ssd1" -e "DB_STORAGE_MOUNTPOINT=/mnt/sdb1/db" openfirmware/postgres-osm    
+
 ## Todo
 
 This Dockerfile is UNFINISHED. There are still some remaining tasks before it is usable for an OpenStreetMap database.
