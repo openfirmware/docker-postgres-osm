@@ -13,10 +13,6 @@ gosu postgres postgres --single -jE <<-EOL
   GRANT ALL ON DATABASE "$OSM_DB" TO "$OSM_USER";
 EOL
 
-gosu postgres postgres --single -jE <<-EOL
-  CREATE DATABASE "$OSM_DB";
-EOL
-
 # In case a tablespace and specific mountpoint was provided, execute tablespace creation and assign db to tablespace
 if env | grep -q ^DB_STORAGE_NAME
   then
