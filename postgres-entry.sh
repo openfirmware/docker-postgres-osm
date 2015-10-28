@@ -13,15 +13,18 @@ gosu postgres postgres --single -jE <<-EOL
   GRANT ALL ON DATABASE "$OSM_DB" TO "$OSM_USER";
 EOL
 
+if env | grep -q ^DB_STORAGE_MOUNTPOINT
+then
 # In case a tablespace and specific mountpoint was provided, execute tablespace creation and assign db to tablespace
-if env | grep -q ^DB_STORAGE_NAME
-  then
-    gosu postgres postgres --single -jE <<-EOL
-      CREATE TABLESPACE $DB_STORAGE_NAME LOCATION '$DB_STORAGE_MOUNTPOINT';
-    EOL
-    gosu postgres postgres --single -jE <<-EOL
-      ALTER DATABASE $OSM_DB SET TABLESPACE $DB_STORAGE_NAME;
-    EOL
+chown -R postgres: $DB_STORAGE_MOUNTPOINT
+
+gosu postgres postgres --single -jE <<-EOL
+  CREATE TABLESPACE $DB_STORAGE_NAME LOCATION '$DB_STORAGE_MOUNTPOINT';
+EOL
+gosu postgres postgres --single -jE <<-EOL
+  ALTER DATABASE $OSM_DB SET TABLESPACE $DB_STORAGE_NAME;
+EOL
+
 fi
 
 # Postgis extension cannot be created in single user mode.
@@ -38,4 +41,3 @@ gosu postgres psql "$OSM_DB" <<-EOL
 EOL
     
 gosu postgres pg_ctl stop
-
